@@ -14,7 +14,7 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Counter Functions Screen'),
+          title: const Text('Counter Functions'),
           actions: [
             IconButton(
               icon: const Icon(Icons.refresh_rounded),
@@ -44,26 +44,46 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FloatingActionButton(
+            FloatingActionButtonCustom(
+              icon: Icons.refresh,
               onPressed: () {
                 setState(() {
-                  counter = counter + 1;
+                  counter = 0;
                 });
               },
-              child: const Icon(Icons.plus_one),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  counter = counter -= 1;
-                });
-              },
-              child: const Icon(Icons.exposure_minus_1_outlined),
-            ),
+            const SizedBox(height: 16),
+            FloatingActionButtonCustom(
+                icon: Icons.plus_one,
+                onPressed: () {
+                  setState(() {
+                    counter += 1;
+                  });
+                }),
+            const SizedBox(height: 16),
+            FloatingActionButtonCustom(
+                icon: Icons.exposure_minus_1_outlined,
+                onPressed: () => setState(() {
+                      if (counter == 0) return;
+                      counter = counter - 1;
+                    })),
           ],
         ));
+  }
+}
+
+class FloatingActionButtonCustom extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  const FloatingActionButtonCustom(
+      {super.key, required this.icon, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: onPressed,
+      child: Icon(icon),
+    );
   }
 }
