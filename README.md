@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+# Preview
+
+![Example](<images/Simulator Screenshot - iPhone 14 Pro Max - 2023-06-13 at 22.14.18.png>)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
